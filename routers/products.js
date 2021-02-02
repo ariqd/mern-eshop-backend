@@ -6,7 +6,13 @@ const mongoose = require("mongoose");
 
 // Get all products
 router.get(`/`, async (req, res) => {
-  const productList = await Product.find().populate("category");
+  let filter = {};
+
+  if (req.query.categories) {
+    filter = { category: req.query.categories.split(",") };
+  }
+
+  const productList = await Product.find(filter).populate("category");
   // .select("name image -_id");
 
   if (!productList) {
