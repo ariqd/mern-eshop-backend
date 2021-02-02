@@ -6,6 +6,18 @@ const router = express.Router();
 // Get all products
 router.get(`/`, async (req, res) => {
   const productList = await Product.find();
+  // .select("name image -_id");
+
+  if (!productList) {
+    res.status(500).json({ success: false });
+  }
+
+  res.send(productList);
+});
+
+// Get a single product
+router.get(`/:id`, async (req, res) => {
+  const productList = await Product.findById(req.params.id);
 
   if (!productList) {
     res.status(500).json({ success: false });
