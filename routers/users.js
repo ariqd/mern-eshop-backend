@@ -59,7 +59,11 @@ router.post("/login", async (req, res) => {
     return res.status(200).send("Wrong email or password");
 
   // Create JWT Token
-  const token = jwt.sign({ userId: user.id }, process.env.secret, { expiresIn: "1d" });
+  const token = jwt.sign(
+    { userId: user.id, isAdmin: user.isAdmin },
+    process.env.secret,
+    { expiresIn: "1d" }
+  );
 
   // Return email and JWT Token
   return res.status(200).send({
