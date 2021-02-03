@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 
 // Get all products
 router.get(`/`, async (req, res) => {
+  // Filter by category
   let filter = {};
 
   if (req.query.categories) {
