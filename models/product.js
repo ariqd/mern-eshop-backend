@@ -47,6 +47,10 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  price: {
+    type: Number,
+    min: 0,
+  },
   numReviews: {
     type: Number,
     default: 0,
