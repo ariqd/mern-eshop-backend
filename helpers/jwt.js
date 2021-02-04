@@ -1,8 +1,10 @@
 const expressJwt = require("express-jwt");
 
+const api = process.env.API_URL;
+
 function authJwt() {
   const secret = process.env.secret;
-  const api = process.env.API_URL;
+  //   const api = process.env.API_URL;
 
   return expressJwt({
     secret,
@@ -19,7 +21,14 @@ function authJwt() {
 }
 
 async function isRevoked(req, payload, done) {
-  if (!payload.isAdmin) done(null, true);
+  if (!payload.isAdmin) {
+    // if (req.originalUrl === `${api}/orders`) {
+    if (/\api\/v1\/orders(.*)/.test(req.originalUrl)) {
+      done();
+    }
+
+    done(null, true);
+  }
 
   done();
 }

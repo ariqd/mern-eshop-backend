@@ -1,7 +1,7 @@
 function errorHandler(err, req, res, next) {
   // JWT Authentication error
   if (err?.name === "UnauthorizedError")
-    return res.status(401).json({ message: "The user is not authenticated!" });
+    return res.status(401).json({ message: "The user is not authenticated!", err: err });
 
   // Validation error
   if (err?.name === "ValidationError")
