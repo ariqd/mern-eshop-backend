@@ -19,23 +19,23 @@ const userSchema = mongoose.Schema({
   },
   street: {
     type: String,
-    required: true,
+    // required: true,
   },
   apartement: {
     type: String,
-    required: false
+    // required: false
   },
   city: {
     type: String,
-    required: true,
+    // required: true,
   },
   zip: {
     type: String,
-    required: true,
+    // required: true,
   },
   country: {
     type: String,
-    required: true,
+    // required: true,
   },
   isAdmin: {
     type: Boolean,

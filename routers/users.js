@@ -25,6 +25,16 @@ router.get("/:id", async (req, res) => {
   res.status(200).send(user);
 });
 
+// Get user by ID (without password)
+router.get("/profile/:id", async (req, res) => {
+  const user = await User.findById(req.params.id).select("-passwordHash");
+
+  if (!user)
+    return res.status(500).send("The user with the given ID was not found.");
+
+  res.status(200).send(user);
+});
+
 // Insert user
 router.post(`/`, async (req, res) => {
   let user = new User({
